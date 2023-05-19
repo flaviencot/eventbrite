@@ -1,0 +1,46 @@
+<% if params[:success] %>
+  <div class="alert alert-success" role="alert">
+    Votre event a été créé avec succès !
+  </div>
+<% end %>
+<% if params[:edit_success] %>
+  <div class="alert alert-success" role="alert">
+    Votre event a été modifie avec succès !
+  </div>
+<% end %>
+<% if params[:destroy_success] %>
+  <div class="alert alert-success" role="alert">
+    Votre event a été supprime avec succès !
+  </div>
+<% end %>
+
+<% if params[:update_failed] || params[:destroy_failed] %>
+  <div class="alert alert-danger" role="alert">
+    Ce n'est pas votre event !
+  </div>
+<% end %>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Bienvenue <%= current_user.first_name %> </h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <%@all_events.each do |elem|%>
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h5 class="card-title"><%= elem.title %></h5>         
+            <h6 class="card-subtitle mb-2 text-muted"><%= elem.location %></h6>
+            <%= @registered %> participants
+            <p class="card-text"><%= elem.description %></p>
+            <%= link_to "Voir l'evenement", event_path(elem), class: "card-link" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

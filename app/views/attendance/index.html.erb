@@ -1,0 +1,14 @@
+<div class="container">
+
+
+<div class="row">
+<%@all_attendances.each do |elem|%>
+
+  <li class="list-group-item"><%= elem.stripe_customer_id%> - 
+                              <%= elem.user.first_name%> 
+                              <%= elem.user.last_name%> - 
+                              <%= elem.user.email%>
+                              </li>
+<% end %>
+</div>
+</div>

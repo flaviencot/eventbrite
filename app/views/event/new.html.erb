@@ -1,0 +1,54 @@
+
+
+<body data-turbo="false">
+  <%= yield %> 
+
+<h1>Event#new</h1>
+<p>Find me in app/views/gossip/new.html.erb</p>
+<% if @event.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <p>Nous n'avons pas réussi à créer le event pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+    <% @event.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<center>
+  <br>
+  <div class="card-center">
+    <div class="card" style="width: 550px">
+      <div class="card-header">
+        <h2 class=" card-txt">Créer un événement</h2>
+      </div>
+      <div class="card-body ">
+
+        <div class="form-group">
+          <div class="mb-3">
+            <%= form_tag url_for(action: 'create'), method: "post" do %>
+              <%= text_field_tag :title, @event.title, placeholder: "Nom de l'event", :class=>"form-control", size: 40 %>
+              <br /> <br />
+              <%= text_field_tag :location, @event.location, placeholder: "Lieu de l'event", :class=>"form-control", size: 40 %>
+              <br /> <br />
+              <div class="form-group">
+              <%= datetime_field_tag :start_date, @event.start_date, class: 'form-control' %>
+            </div>
+              <br /> <br />
+              <%= text_field_tag :duration, @event.duration, placeholder: "Durée de l'event", :class=>"form-control", size: 40 %>
+              <br /> <br />
+              <%= text_area_tag :description, @event.description, placeholder: "Description de l'event", :class=>"form-control", rows: 4, cols: 42 %>
+              <br /> <br />
+              <%= text_field_tag :price, @event.price, placeholder: "Prix de participation unitaire", :class=>"form-control", size: 40 %>
+              <br /> <br />
+              <%= submit_tag "Create Post" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
+        
+</body>
